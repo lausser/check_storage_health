@@ -15,42 +15,25 @@ sub init {
     $Monitoring::GLPlugin::SNMP::MibsAndOids::definitions->{'ISILON-MIB'} =
         $Monitoring::GLPlugin::SNMP::MibsAndOids::definitions->{'ISILON-MIB::201608050000Z'};
   }
-  if ($self->mode =~ /device::sensor::status/) {
-    $self->analyze_and_check_sensor_subsystem("Classes::EMC::Isilon::Component::SensorSubsystem");
-  } elsif ($self->mode =~ /device::hardware::load/) {
+  if ($self->mode =~ /device::hardware::load/) {
     $self->analyze_and_check_cpu_subsystem("Classes::EMC::Isilon::Component::CpuSubsystem");
   } elsif ($self->mode =~ /device::hardware::memory/) {
-    $self->analyze_and_check_mem_subsystem("Classes::EMC::Isilon::Component::MemSubsystem");
+    $self->analyze_and_check_mem_subsystem("Classes::UCDMIB::Component::MemSubsystem");
   } elsif ($self->mode =~ /device::hardware::health/) {
     $self->analyze_and_check_sensor_subsystem("Classes::EMC::Isilon::Component::EnvironmentalSubsystem");
-  } elsif ($self->mode =~ /device::hardware::raid::list/) {
-    $self->analyze_and_check_disk_subsystem("Classes::EMC::Isilon::Component::DiskSubsystem");
-  } elsif ($self->mode =~ /device::hardware::plex::list/) {
-    $self->analyze_and_check_plex_subsystem("Classes::EMC::Isilon::Component::PlexSubsystem");
-  } elsif ($self->mode =~ /device::hardware::volume::list/) {
-    $self->analyze_and_check_volume_subsystem("Classes::EMC::Isilon::Component::VolumeSubsystem");
-  } elsif ($self->mode =~ /device::hardware::aggregate::list/) {
-    $self->analyze_and_check_aggregate_subsystem("Classes::EMC::Isilon::Component::AggregateSubsystem");
-  } elsif ($self->mode =~ /device::storage::gr/) {
-    $self->analyze_and_check_qr_subsystem();
+  } elsif ($self->mode =~ /device::storage::filesystem::free/) {
+    $self->analyze_and_check_disk_subsystem("Classes::EMC::Isilon::Component::StorageSubsystem");
+  } elsif ($self->mode =~ /device::storage::snapshots/) {
+    $self->analyze_and_check_disk_subsystem("Classes::EMC::Isilon::Component::SnapshotSubsystem");
+  } elsif ($self->mode =~ /device::storage::quota/) {
+    $self->analyze_and_check_disk_subsystem("Classes::EMC::Isilon::Component::QuotaSubsystem");
+  } elsif ($self->mode =~ /device::network/) {
+    $self->analyze_and_check_disk_subsystem("Classes::EMC::Isilon::Component::NetworkSubsystem");
+  } elsif ($self->mode =~ /device::cluster::health/) {
+    $self->analyze_and_check_cluster_subsystem("Classes::EMC::Isilon::Component::ClusterSubsystem");
   } else {
     $self->no_such_mode();
   }
 }
-
-sub xxxmodel_serial {
-  my $self = shift;
-  return sprintf '%s %s, FW:%s, Serial:%s',
-      $self->name_of_oid('NETAPP-MIB', $self->{sysobjectid}),
-      $self->get_snmp_object('NETAPP-MIB', 'productModel'),
-      $self->get_snmp_object('NETAPP-MIB', 'productFirmwareVersion'),
-      $self->get_snmp_object('NETAPP-MIB', 'productSerialNum');
-}
-
-package Classes::EMC::ClusteredIsilon;
-our @ISA = qw(Classes::EMC::Isilon);
-
-package Classes::EMC::NetCache;
-our @ISA = qw(Classes::EMC::Isilon);
 
 

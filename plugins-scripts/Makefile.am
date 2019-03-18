@@ -13,7 +13,9 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/MIB2MIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/NETAPPMIB.pm \
-  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/UCDSNMPMIB.pm
+
 EXTRA_MODULES=\
   Classes/NetApp/Filer/Component/AggregateSubsystem.pm \
   Classes/NetApp/Filer/Component/VolumeSubsystem.pm \
@@ -27,8 +29,16 @@ EXTRA_MODULES=\
   Classes/EMC/Isilon/Component/TemperatureSubsystem.pm \
   Classes/EMC/Isilon/Component/FanSubsystem.pm \
   Classes/EMC/Isilon/Component/DiskSubsystem.pm \
+  Classes/EMC/Isilon/Component/NodeSubsystem.pm \
+  Classes/EMC/Isilon/Component/ClusterSubsystem.pm \
+  Classes/EMC/Isilon/Component/CpuSubsystem.pm \
+  Classes/EMC/Isilon/Component/StorageSubsystem.pm \
+  Classes/EMC/Isilon/Component/SnapshotSubsystem.pm \
+  Classes/EMC/Isilon/Component/QuotaSubsystem.pm \
+  Classes/EMC/Isilon/Component/NetworkSubsystem.pm \
   Classes/EMC/Isilon.pm \
   Classes/EMC.pm \
+  Classes/UCDMIB/Components/MemSubsystem.pm \
   Classes/Device.pm
 
 SED=/bin/sed

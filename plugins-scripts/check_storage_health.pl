@@ -48,10 +48,40 @@ $plugin->add_mode(
     help => 'Check the status of environmental equipment (fans, temperatures, power)',
 );
 $plugin->add_mode(
+    internal => 'device::cluster::health',
+    spec => 'cluster-health',
+    alias => undef,
+    help => 'Check the overall cluster status and available nodes',
+);
+$plugin->add_mode(
     internal => 'device::sensor::status',
     spec => 'sensor-status',
     alias => undef,
     help => 'Check the status of the sensors',
+);
+$plugin->add_mode(
+    internal => 'device::storage::filesystem::free',
+    spec => 'filesystem-free',
+    alias => undef,
+    help => 'Check the free space in a filesystem',
+);
+$plugin->add_mode(
+    internal => 'device::storage::snapshots::age',
+    spec => 'snapshot-age',
+    alias => undef,
+    help => 'Check aging snapshots',
+);
+$plugin->add_mode(
+    internal => 'device::storage::quota::usage',
+    spec => 'quota-usage',
+    alias => undef,
+    help => 'Check the usage of quota',
+);
+$plugin->add_mode(
+    internal => 'device::network::protos',
+    spec => 'protocol-usage',
+    alias => undef,
+    help => 'Check the usage of the different network protocols',
 );
 $plugin->add_mode(
     internal => 'device::storage::qr::free',

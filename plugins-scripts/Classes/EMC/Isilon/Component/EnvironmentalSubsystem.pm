@@ -4,6 +4,9 @@ use strict;
 
 sub init {
   my ($self) = @_;
+  $self->{node_subsystem} =
+      Classes::EMC::Isilon::Component::NodeSubsystem->new()
+      if (! $self->opts->subsystem || $self->opts->subsystem eq "node_subsystem");
   $self->{disk_subsystem} =
       Classes::EMC::Isilon::Component::DiskSubsystem->new()
       if (! $self->opts->subsystem || $self->opts->subsystem eq "disk_subsystem");
@@ -20,6 +23,8 @@ sub init {
 
 sub check {
   my ($self) = @_;
+  $self->{node_subsystem}->check()
+      if (! $self->opts->subsystem || $self->opts->subsystem eq "node_subsystem");
   $self->{disk_subsystem}->check()
       if (! $self->opts->subsystem || $self->opts->subsystem eq "disk_subsystem");
   $self->{temperature_subsystem}->check()
@@ -33,6 +38,8 @@ sub check {
 
 sub dump {
   my ($self) = @_;
+  $self->{node_subsystem}->dump()
+      if (! $self->opts->subsystem || $self->opts->subsystem eq "node_subsystem");
   $self->{disk_subsystem}->dump()
       if (! $self->opts->subsystem || $self->opts->subsystem eq "disk_subsystem");
   $self->{temperature_subsystem}->dump()

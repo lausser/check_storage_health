@@ -1,2 +1,8 @@
+* 2019-03-18 1.0.1
+  Check percentage of online nodes in isilon cluster health.
+* 2019-02-08 1.0.0.1
+  Fix negative temperatures in Isilon
+* 2019-01-24 1.0
+  add modes cluster-health, filesystem-free, snapshot-age, quota-free, protocol-usage
 * 2019-01-15 0.1
   initial release, supports hardware-health for isilon

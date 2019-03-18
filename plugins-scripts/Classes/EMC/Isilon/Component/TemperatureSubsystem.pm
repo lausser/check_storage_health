@@ -14,6 +14,12 @@ our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 sub finish {
   my ($self) = @_;
   $self->{tempSensorName} = $self->{tempSensorName}."_Temp" if $self->{tempSensorName} !~ /temp/i;
+  # Wir haben wegen der ISILON Minus-Temperatur mal nachgefragt und folgende Antwort bekommen:
+  # Das ist kein Bug sondern es wird kein absoluter Wert zurückgeliefert. Du musst den Wert -53.000 so verstehen, dass dieser 53° bis zum „Problem“ entfernt ist  sprich bei 0 wird es problematisch.
+  # Glauben tu ich das zwar nicht, aber kannst du das bei diesem Wert „CPU0_Temp“ berücksichtigen?
+  # Ich glaub's auch nicht. Aber -46 Grad an einer CPU auch nicht, also
+  # nicht weiter nachgrübeln und glatthobeln.
+  $self->{tempSensorValue} = abs($self->{tempSensorValue});
 }
 
 sub check {
