@@ -1,11 +1,11 @@
-package Classes::EMC::Isilon::Component::DiskSubsystem;
+package Classes::Dell::Isilon::Component::DiskSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-    ["disks", "diskTable", "Classes::EMC::Isilon::Component::DiskSubsystem::Disk"],
-    ["iops", "diskPerfTable", "Classes::EMC::Isilon::Component::DiskSubsystem::DiskPerf"],
+    ["disks", "diskTable", "Classes::Dell::Isilon::Component::DiskSubsystem::Disk"],
+    ["iops", "diskPerfTable", "Classes::Dell::Isilon::Component::DiskSubsystem::DiskPerf"],
   ]);
   $self->merge_tables("disks", ("iops", sub {
       my($into, $from) = @_;
@@ -14,11 +14,11 @@ sub init {
 }
 
 
-package Classes::EMC::Isilon::Component::DiskSubsystem::DiskPerf;
+package Classes::Dell::Isilon::Component::DiskSubsystem::DiskPerf;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 
-package Classes::EMC::Isilon::Component::DiskSubsystem::Disk;
+package Classes::Dell::Isilon::Component::DiskSubsystem::Disk;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

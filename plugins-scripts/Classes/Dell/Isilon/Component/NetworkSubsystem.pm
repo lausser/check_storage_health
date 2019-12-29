@@ -1,10 +1,10 @@
-package Classes::EMC::Isilon::Component::NetworkSubsystem;
+package Classes::Dell::Isilon::Component::NetworkSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-      ["protos", "nodeProtocolPerfTable", "Classes::EMC::Isilon::Component::NetworkSubsystem::Proto"],
+      ["protos", "nodeProtocolPerfTable", "Classes::Dell::Isilon::Component::NetworkSubsystem::Proto"],
   ]);
 }
 
@@ -15,7 +15,7 @@ sub check {
 }
 
 
-package Classes::EMC::Isilon::Component::NetworkSubsystem::Proto;
+package Classes::Dell::Isilon::Component::NetworkSubsystem::Proto;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

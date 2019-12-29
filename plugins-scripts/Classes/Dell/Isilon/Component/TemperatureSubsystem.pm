@@ -1,14 +1,14 @@
-package Classes::EMC::Isilon::Component::TemperatureSubsystem;
+package Classes::Dell::Isilon::Component::TemperatureSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-    ["temperatures", "tempSensorTable", "Classes::EMC::Isilon::Component::TemperatureSubsystem::Temperature"],
+    ["temperatures", "tempSensorTable", "Classes::Dell::Isilon::Component::TemperatureSubsystem::Temperature"],
   ]);
 }
 
-package Classes::EMC::Isilon::Component::TemperatureSubsystem::Temperature;
+package Classes::Dell::Isilon::Component::TemperatureSubsystem::Temperature;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {
@@ -26,10 +26,22 @@ sub check {
   my ($self) = @_;
   $self->add_info(sprintf "%s is %.2fC",
       $self->{tempSensorName}, $self->{tempSensorValue});
+  my ($warning, $critical) = (28, 33);
+  if ($self->{tempSensorName} =~ /(dimm|hdd|cpu)/i) {
+    ($warning, $critical) = (75, 85);
+  } elsif ($self->{tempSensorName} =~ /(PS._Temp0)/) {
+    ($warning, $critical) = (70, 85);
+  } elsif ($self->{tempSensorName} =~ /(PS._Temp1)/) {
+    ($warning, $critical) = (40, 50);
+  } elsif ($self->{tempSensorName} =~ /Battery0_Temp/) {
+    ($warning, $critical) = (45, 50);
+  } elsif ($self->{tempSensorName} =~ /SP_Temp0/) {
+    ($warning, $critical) = (45, 50);
+  }
   $self->set_thresholds(
       metric => $self->{tempSensorName},
-      warning => $self->{tempSensorName} =~ /(dimm|hdd|cpu)/i ? 75 : 28,
-      critical => $self->{tempSensorName} =~ /(dimm|hdd|cpu)/i ? 85 : 33,
+      warning => $warning,
+      critical => $critical,
   );
   $self->add_message($self->check_thresholds(
       metric => $self->{tempSensorName},

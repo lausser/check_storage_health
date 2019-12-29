@@ -13,14 +13,13 @@ sub classify {
       if ($self->opts->mode =~ /^my-/) {
         $self->load_my_extension();
       } elsif ($self->{productname} =~ /netapp/i) {
-        bless $self, 'Classes::NetApp';
-        $self->debug('using Classes::NetApp');
+        $self->rebless('Classes::NetApp');
       } elsif ($self->implements_mib('NETAPP-MIB')) {
-        bless $self, 'Classes::NetApp';
-        $self->debug('using Classes::NetApp');
+        $self->rebless('Classes::NetApp');
       } elsif ($self->implements_mib('ISILON-MIB')) {
-        bless $self, 'Classes::EMC::Isilon';
-        $self->debug('using Classes::EMC::Isilon');
+        $self->rebless('Classes::Dell::Isilon');
+      } elsif ($self->implements_mib('DELL-STORAGE-SC-MIB')) {
+        $self->rebless('Classes::Dell::Storagecenter');
       } else {
         if (my $class = $self->discover_suitable_class()) {
           bless $self, $class;

@@ -11,9 +11,11 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/Item.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/TableItem.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/DELLSTORAGESCMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/MIB2MIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/NETAPPMIB.pm \
-  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SNMPV2TCV1MIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/UCDSNMPMIB.pm
 
 EXTRA_MODULES=\
@@ -24,20 +26,29 @@ EXTRA_MODULES=\
   Classes/NetApp/Filer/Component/CpuSubsystem.pm \
   Classes/NetApp/Filer.pm \
   Classes/NetApp.pm \
-  Classes/EMC/Isilon/Component/EnvironmentalSubsystem.pm \
-  Classes/EMC/Isilon/Component/PowersensorSubsystem.pm \
-  Classes/EMC/Isilon/Component/TemperatureSubsystem.pm \
-  Classes/EMC/Isilon/Component/FanSubsystem.pm \
-  Classes/EMC/Isilon/Component/DiskSubsystem.pm \
-  Classes/EMC/Isilon/Component/NodeSubsystem.pm \
-  Classes/EMC/Isilon/Component/ClusterSubsystem.pm \
-  Classes/EMC/Isilon/Component/CpuSubsystem.pm \
-  Classes/EMC/Isilon/Component/StorageSubsystem.pm \
-  Classes/EMC/Isilon/Component/SnapshotSubsystem.pm \
-  Classes/EMC/Isilon/Component/QuotaSubsystem.pm \
-  Classes/EMC/Isilon/Component/NetworkSubsystem.pm \
-  Classes/EMC/Isilon.pm \
-  Classes/EMC.pm \
+  Classes/Dell/Isilon/Component/EnvironmentalSubsystem.pm \
+  Classes/Dell/Isilon/Component/PowersensorSubsystem.pm \
+  Classes/Dell/Isilon/Component/TemperatureSubsystem.pm \
+  Classes/Dell/Isilon/Component/FanSubsystem.pm \
+  Classes/Dell/Isilon/Component/DiskSubsystem.pm \
+  Classes/Dell/Isilon/Component/NodeSubsystem.pm \
+  Classes/Dell/Isilon/Component/ClusterSubsystem.pm \
+  Classes/Dell/Isilon/Component/CpuSubsystem.pm \
+  Classes/Dell/Isilon/Component/StorageSubsystem.pm \
+  Classes/Dell/Isilon/Component/SnapshotSubsystem.pm \
+  Classes/Dell/Isilon/Component/QuotaSubsystem.pm \
+  Classes/Dell/Isilon/Component/NetworkSubsystem.pm \
+  Classes/Dell/Isilon.pm \
+  Classes/Dell/Storagecenter/Component/AlertSubsystem.pm \
+  Classes/Dell/Storagecenter/Component/NodeSubsystem.pm \
+  Classes/Dell/Storagecenter/Component/FanSubsystem.pm \
+  Classes/Dell/Storagecenter/Component/DiskSubsystem.pm \
+  Classes/Dell/Storagecenter/Component/PowersupplySubsystem.pm \
+  Classes/Dell/Storagecenter/Component/TemperatureSubsystem.pm \
+  Classes/Dell/Storagecenter/Component/EnvironmentalSubsystem.pm \
+  Classes/Dell/Storagecenter.pm \
+  Classes/Dell.pm \
+  Classes/UCDMIB/Components/CpuSubsystem.pm \
   Classes/UCDMIB/Components/MemSubsystem.pm \
   Classes/Device.pm
 

@@ -1,3 +1,7 @@
+* 2019-12-29 1.1
+  Add Dell Storagecenter
+  Rewrite Isilon
+  Rename EMC to Dell
 * 2019-03-18 1.0.1
   Check percentage of online nodes in isilon cluster health.
 * 2019-02-08 1.0.0.1

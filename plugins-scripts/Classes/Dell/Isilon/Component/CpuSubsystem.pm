@@ -1,4 +1,4 @@
-package Classes::EMC::Isilon::Component::CpuSubsystem;
+package Classes::Dell::Isilon::Component::CpuSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
@@ -6,8 +6,8 @@ sub init {
   $self->get_snmp_objects("ISILON-MIB", qw(nodeCPUUser nodeCPUNice
       nodeCPUSystem nodeCPUInterrupt nodeCPUIdle));
   $self->get_snmp_tables("ISILON-MIB", [
-    ["clustercpus", "clusterCPUPerf", "Classes::EMC::Isilon::Component::CpuSubsystem::ClusterCpu"],
-    ["nodecpus", "nodeCPUPerfTable", "Classes::EMC::Isilon::Component::CpuSubsystem::NodeCpu"],
+    ["clustercpus", "clusterCPUPerf", "Classes::Dell::Isilon::Component::CpuSubsystem::ClusterCpu"],
+    ["nodecpus", "nodeCPUPerfTable", "Classes::Dell::Isilon::Component::CpuSubsystem::NodeCpu"],
   ]);
   $self->{busy} = (1000 - $self->{nodeCPUIdle}) / 10;
 }
@@ -35,7 +35,7 @@ sub check {
 }
 
 
-package Classes::EMC::Isilon::Component::CpuSubsystem::NodeCpu;
+package Classes::Dell::Isilon::Component::CpuSubsystem::NodeCpu;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {
@@ -56,7 +56,7 @@ sub check {
 }
 
 
-package Classes::EMC::Isilon::Component::CpuSubsystem::ClusterCpu;
+package Classes::Dell::Isilon::Component::CpuSubsystem::ClusterCpu;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

@@ -1,14 +1,14 @@
-package Classes::EMC::Isilon::Component::QuotaSubsystem;
+package Classes::Dell::Isilon::Component::QuotaSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-    ["quotas", "quotaTable", "Classes::EMC::Isilon::Component::QuotaSubsystem::Quota"],
+    ["quotas", "quotaTable", "Classes::Dell::Isilon::Component::QuotaSubsystem::Quota"],
   ]);
 }
 
-package Classes::EMC::Isilon::Component::QuotaSubsystem::Quota;
+package Classes::Dell::Isilon::Component::QuotaSubsystem::Quota;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

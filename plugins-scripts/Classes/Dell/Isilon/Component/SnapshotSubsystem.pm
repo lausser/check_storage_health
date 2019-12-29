@@ -1,16 +1,16 @@
-package Classes::EMC::Isilon::Component::SnapshotSubsystem;
+package Classes::Dell::Isilon::Component::SnapshotSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->bulk_is_baeh(20);
   $self->get_snmp_tables("ISILON-MIB", [
-      ["snapshots", "snapshotTable", "Classes::EMC::Isilon::Component::SnapshotSubsystem::Snapshot",]
+      ["snapshots", "snapshotTable", "Classes::Dell::Isilon::Component::SnapshotSubsystem::Snapshot",]
   ]);
 }
 
 
-package Classes::EMC::Isilon::Component::SnapshotSubsystem::Snapshot;
+package Classes::Dell::Isilon::Component::SnapshotSubsystem::Snapshot;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

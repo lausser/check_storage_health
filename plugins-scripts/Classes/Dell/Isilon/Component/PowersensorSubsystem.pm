@@ -1,14 +1,14 @@
-package Classes::EMC::Isilon::Component::PowersensorSubsystem;
+package Classes::Dell::Isilon::Component::PowersensorSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-    ["powersensors", "powerSensorTable", "Classes::EMC::Isilon::Component::PowersensorSubsystem::Powersensor"],
+    ["powersensors", "powerSensorTable", "Classes::Dell::Isilon::Component::PowersensorSubsystem::Powersensor"],
   ]);
 }
 
-package Classes::EMC::Isilon::Component::PowersensorSubsystem::Powersensor;
+package Classes::Dell::Isilon::Component::PowersensorSubsystem::Powersensor;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub check {

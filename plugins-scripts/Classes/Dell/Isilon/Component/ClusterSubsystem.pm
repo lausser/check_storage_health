@@ -1,4 +1,4 @@
-package Classes::EMC::Isilon::Component::ClusterSubsystem;
+package Classes::Dell::Isilon::Component::ClusterSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {

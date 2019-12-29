@@ -1,4 +1,4 @@
-package Classes::EMC::Isilon::Component::StorageSubsystem;
+package Classes::Dell::Isilon::Component::StorageSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
@@ -59,7 +59,7 @@ sub check {
   }
 }
 
-package Classes::EMC::Isilon::Component::StorageSubsystem::Snapshot;
+package Classes::Dell::Isilon::Component::StorageSubsystem::Snapshot;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {

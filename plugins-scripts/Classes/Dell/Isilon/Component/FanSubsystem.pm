@@ -1,14 +1,14 @@
-package Classes::EMC::Isilon::Component::FanSubsystem;
+package Classes::Dell::Isilon::Component::FanSubsystem;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
   $self->get_snmp_tables("ISILON-MIB", [
-    ["fans", "fanTable", "Classes::EMC::Isilon::Component::FanSubsystem::Fan", undef, undef, "fanName"],
+    ["fans", "fanTable", "Classes::Dell::Isilon::Component::FanSubsystem::Fan", undef, undef, "fanName"],
   ]);
 }
 
-package Classes::EMC::Isilon::Component::FanSubsystem::Fan;
+package Classes::Dell::Isilon::Component::FanSubsystem::Fan;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
 sub finish {
