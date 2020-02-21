@@ -10,6 +10,15 @@ sub init {
   ]);
 }
 
+sub check {
+  my ($self) = @_;
+  if (! @{$self->{cpowers}} && ! @{$self->{epowers}} && ! @{$self->{ups}}) {
+    $self->add_info("all power-related snmp tables are empty and i have no pertinent informations. i keep my fingers crossed.");
+    $self->add_ok();
+  } else {
+    $self->SUPER::check();
+  }
+}
 
 package Classes::Dell::Storagecenter::Component::PowersupplySubsystem::Powersupply;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);

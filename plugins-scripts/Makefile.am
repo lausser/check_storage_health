@@ -11,6 +11,7 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/Item.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/TableItem.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/DATADOMAINMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/DELLSTORAGESCMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/MIB2MIB.pm \
@@ -47,6 +48,15 @@ EXTRA_MODULES=\
   Classes/Dell/Storagecenter/Component/TemperatureSubsystem.pm \
   Classes/Dell/Storagecenter/Component/EnvironmentalSubsystem.pm \
   Classes/Dell/Storagecenter.pm \
+  Classes/Dell/Datadomain/Components/CpuSubsystem.pm \
+  Classes/Dell/Datadomain/Components/EnvironmentalSubsystem.pm \
+  Classes/Dell/Datadomain/Components/AlertSubsystem.pm \
+  Classes/Dell/Datadomain/Components/CpuSubsystem.pm \
+  Classes/Dell/Datadomain/Components/DiskSubsystem.pm \
+  Classes/Dell/Datadomain/Components/FanSubsystem.pm \
+  Classes/Dell/Datadomain/Components/PowersupplySubsystem.pm \
+  Classes/Dell/Datadomain/Components/TemperatureSubsystem.pm \
+  Classes/Dell/Datadomain.pm \
   Classes/Dell.pm \
   Classes/UCDMIB/Components/CpuSubsystem.pm \
   Classes/UCDMIB/Components/MemSubsystem.pm \

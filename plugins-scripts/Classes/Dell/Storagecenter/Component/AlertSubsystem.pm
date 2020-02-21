@@ -18,7 +18,9 @@ sub check {
   my ($self) = @_;
   $self->add_info(sprintf "%s %s",
       $self->{scAlertType}, $self->{scAlertMessage});
-  if ($self->{scAlertAcknowledged} eq "false") {
+  if ($self->{scAlertStatus} eq "inform") {
+    $self->add_ok();
+  } elsif ($self->{scAlertAcknowledged} eq "false") {
     if ($self->{scAlertType} eq "alert") {
       $self->add_critical();
     } else {

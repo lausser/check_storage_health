@@ -20,6 +20,8 @@ sub classify {
         $self->rebless('Classes::Dell::Isilon');
       } elsif ($self->implements_mib('DELL-STORAGE-SC-MIB')) {
         $self->rebless('Classes::Dell::Storagecenter');
+      } elsif ($self->implements_mib('DATA-DOMAIN-MIB')) {
+        $self->rebless('Classes::Dell::Datadomain');
       } else {
         if (my $class = $self->discover_suitable_class()) {
           bless $self, $class;
