@@ -4,7 +4,10 @@ use strict;
 
 sub init {
   my ($self) = @_;
-  $self->bulk_is_baeh(15);
+  # heuristisch rumprobiert
+  $self->reset_snmp_max_msg_size();
+  $self->mult_snmp_max_msg_size(10);
+  $self->bulk_is_baeh(5);
   $self->get_snmp_tables("DATA-DOMAIN-MIB", [
       ["diskperformances", "diskPerformanceTable", "Classes::Dell::Datadomain::Component::EnvironmentalSubsystem::DiskPerformance"],
   ]);

@@ -4,10 +4,10 @@ use strict;
 
 sub init {
   my ($self) = @_;
+  $self->mult_snmp_max_msg_size(4);
   $self->get_snmp_tables("DATA-DOMAIN-MIB", [
       ["currentalerts", "currentAlertTable", "Classes::Dell::Datadomain::Component::EnvironmentalSubsystem::CurrentAlert"],
   ]);
-  $self->mult_snmp_max_msg_size(4);
   $self->get_snmp_tables("DATA-DOMAIN-MIB", [
       ["alerthistorys", "alertHistoryTable", "Classes::Dell::Datadomain::Component::EnvironmentalSubsystem::AlertHistory"],
   ]);

@@ -51,7 +51,6 @@ EXTRA_MODULES=\
   Classes/Dell/Datadomain/Components/CpuSubsystem.pm \
   Classes/Dell/Datadomain/Components/EnvironmentalSubsystem.pm \
   Classes/Dell/Datadomain/Components/AlertSubsystem.pm \
-  Classes/Dell/Datadomain/Components/CpuSubsystem.pm \
   Classes/Dell/Datadomain/Components/DiskSubsystem.pm \
   Classes/Dell/Datadomain/Components/FanSubsystem.pm \
   Classes/Dell/Datadomain/Components/PowersupplySubsystem.pm \
