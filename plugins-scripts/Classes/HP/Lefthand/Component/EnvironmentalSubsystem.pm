@@ -15,7 +15,6 @@ sub init {
       ["temperature_subsystem", "Classes::HP::Lefthand::Component::TemperatureSubsystem"],
       ["disk_subsystem", "Classes::HP::Lefthand::Component::DiskSubsystem"],
       ["raid_subsystem", "Classes::HP::Lefthand::Component::RaidSubsystem"],
-      ["osraid_subsystem", "Classes::HP::Lefthand::Component::OSRaidSubsystem"],
   ]);
 }
 
