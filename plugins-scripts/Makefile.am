@@ -17,7 +17,17 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/MIB2MIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/NETAPPMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SNMPV2TCV1MIB.pm \
-  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/UCDSNMPMIB.pm
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/UCDSNMPMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMCLUSTERINGMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMDNSMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMINFOMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMNETWORKMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMNOTIFICATIONMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMNTPMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSECURITYMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTATUSMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTORAGEMIB.pm
 
 EXTRA_MODULES=\
   Classes/NetApp/Filer/Component/AggregateSubsystem.pm \
@@ -57,6 +67,17 @@ EXTRA_MODULES=\
   Classes/Dell/Datadomain/Components/TemperatureSubsystem.pm \
   Classes/Dell/Datadomain.pm \
   Classes/Dell.pm \
+  Classes/HP/Lefthand/Component/StorageSubsystem.pm \
+  Classes/HP/Lefthand/Component/ClusterSubsystem.pm \
+  Classes/HP/Lefthand/Component/RaidSubsystem.pm \
+  Classes/HP/Lefthand/Component/DiskSubsystem.pm \
+  Classes/HP/Lefthand/Component/EnvironmentalSubsystem.pm \
+  Classes/HP/Lefthand/Component/CacheSubsystem.pm \
+  Classes/HP/Lefthand/Component/FanSubsystem.pm \
+  Classes/HP/Lefthand/Component/PowersupplySubsystem.pm \
+  Classes/HP/Lefthand/Component/TemperatureSubsystem.pm \
+  Classes/HP/Lefthand.pm \
+  Classes/HP.pm \
   Classes/UCDMIB/Components/CpuSubsystem.pm \
   Classes/UCDMIB/Components/MemSubsystem.pm \
   Classes/Device.pm

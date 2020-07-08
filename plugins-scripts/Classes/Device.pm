@@ -22,6 +22,8 @@ sub classify {
         $self->rebless('Classes::Dell::Storagecenter');
       } elsif ($self->implements_mib('DATA-DOMAIN-MIB')) {
         $self->rebless('Classes::Dell::Datadomain');
+      } elsif ($self->implements_mib('LEFTHAND-NETWORKS-NSM-INFO-MIB')) {
+        $self->rebless('Classes::HP::Lefthand');
       } else {
         if (my $class = $self->discover_suitable_class()) {
           bless $self, $class;
