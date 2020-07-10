@@ -12,6 +12,12 @@ sub init {
 package Classes::HP::Lefthand::Component::DiskSubsystem::Disk;
 our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 
+sub finish {
+  my ($self) = @_;
+  $self->{storageDeviceCapacity} *= (1024*1024);
+  $self->{storageDeviceCapacity_GB} = $self->{storageDeviceCapacity} / (1.0*1024*1024*1024);
+}
+
 sub check {
   my ($self) = @_;
   $self->add_info(sprintf "%s status is %s,%s (smart: %s,%s, temperature: %sC,%s)",

@@ -66,6 +66,12 @@ $plugin->add_mode(
     help => 'Check the free space in a filesystem',
 );
 $plugin->add_mode(
+    internal => 'device::storage::cluster::free',
+    spec => 'cluster-free',
+    alias => undef,
+    help => 'Check the free space in a cluster (hp lefthand)',
+);
+$plugin->add_mode(
     internal => 'device::storage::snapshots::age',
     spec => 'snapshot-age',
     alias => undef,

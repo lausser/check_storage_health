@@ -11,7 +11,7 @@ sub init {
     $self->analyze_and_check_cpu_subsystem("Classes::UCDMIB::Component::CpuSubsystem");
   } elsif ($self->mode eq "device::hardware::memory") {
     $self->analyze_and_check_cpu_subsystem("Classes::UCDMIB::Component::MemSubsystem");
-  } elsif ($self->mode =~ /device::storage::filesystem::free/) {
+  } elsif ($self->mode =~ /device::storage::\w+::free/) {
     $self->analyze_and_check_disk_subsystem("Classes::HP::Lefthand::Component::StorageSubsystem");
   } elsif ($self->mode =~ /device::network/) {
     $self->analyze_and_check_disk_subsystem("Classes::HP::Lefthand::Component::NetworkSubsystem");
