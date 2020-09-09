@@ -3,7 +3,7 @@ our @ISA = qw(Monitoring::GLPlugin::SNMP::Item);
 
 sub init {
   my ($self) = @_;
-  $self->bulk_is_baeh(10);
+  $self->bulk_is_baeh(5);
   $self->get_snmp_tables("DELL-STORAGE-SC-MIB", [
     ["alerts", "scAlertTable", "Classes::Dell::Storagecenter::Component::AlertSubsystem::Alert"],
   ]);
