@@ -13,6 +13,7 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/DATADOMAINMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/DELLSTORAGESCMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/HOSTRESOURCESMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/ISILONMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/MIB2MIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/NETAPPMIB.pm \
@@ -30,6 +31,14 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTORAGEMIB.pm
 
 EXTRA_MODULES=\
+  Classes/HOSTRESOURCESMIB/Component/ClockSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/DeviceSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/DiskSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/EnvironmentalSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/CpuSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/MemSubsystem.pm \
+  Classes/HOSTRESOURCESMIB/Component/UptimeSubsystem.pm \
+  Classes/HOSTRESOURCESMIB.pm \
   Classes/NetApp/Filer/Component/AggregateSubsystem.pm \
   Classes/NetApp/Filer/Component/VolumeSubsystem.pm \
   Classes/NetApp/Filer/Component/PlexSubsystem.pm \

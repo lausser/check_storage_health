@@ -14,6 +14,7 @@ sub init {
     $self->analyze_and_check_cpu_subsystem("Classes::UCDMIB::Component::CpuSubsystem");
   } elsif ($self->mode eq "device::hardware::memory") {
     $self->analyze_and_check_cpu_subsystem("Classes::UCDMIB::Component::MemSubsystem");
+    $self->analyze_and_check_uptime_subsystem("Classes::HOSTRESOURCESMIB::Component::MemSubsystem");
   } else {
     $self->no_such_mode();
   }
