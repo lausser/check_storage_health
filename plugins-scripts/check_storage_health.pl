@@ -96,6 +96,12 @@ $plugin->add_mode(
     help => 'Check the free space in a qtree',
 );
 $plugin->add_mode(
+    internal => 'device::storage::filesystem::writable',
+    spec => 'filesystem-writable',
+    alias => undef,
+    help => 'Check if a filesystem is writable',
+);
+$plugin->add_mode(
     internal => 'device::storage::qr::list',
     spec => 'list-qtrees',
     alias => undef,

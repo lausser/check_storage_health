@@ -1,3 +1,5 @@
+* 2022-08-29 1.4
+  use HOST-RESOURCES-MIB and add mode filesystem-writable for it
 * 2022-04-11 1.3.2
   add HOSTRESOURCES-MIB
 * 2020-09-09 1.3.1.1

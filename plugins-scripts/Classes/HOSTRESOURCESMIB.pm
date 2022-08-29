@@ -14,6 +14,8 @@ sub init {
     $self->analyze_and_check_cpu_subsystem("Classes::HOSTRESOURCESMIB::Component::CpuSubsystem");
   } elsif ($self->mode =~ /device::hardware::memory/) {
     $self->analyze_and_check_mem_subsystem("Classes::HOSTRESOURCESMIB::Component::MemSubsystem");
+  } elsif ($self->mode =~ /device::storage::filesystem/) {
+    $self->analyze_and_check_mem_subsystem("Classes::HOSTRESOURCESMIB::Component::DiskSubsystem");
   } else {
     $self->no_such_mode();
   }
