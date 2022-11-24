@@ -26,6 +26,12 @@ sub check {
   }
 }
 
+sub internal_content {
+  my ($self) = @_;
+  return $self->{currentAlertDescription};
+}
+
+
 package Classes::Dell::Datadomain::Component::EnvironmentalSubsystem::AlertHistory;
 use parent -norequire, 'Monitoring::GLPlugin::SNMP::TableItem';
 use strict;

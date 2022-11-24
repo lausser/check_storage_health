@@ -31,3 +31,7 @@ sub check {
   }
 }
 
+sub internal_content {
+  my ($self) = @_;
+  return $self->{scAlertMessage};
+}
