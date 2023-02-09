@@ -28,7 +28,17 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMNTPMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSECURITYMIB.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTATUSMIB.pm \
-  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTORAGEMIB.pm
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/LEFTHANDNETWORKSNSMSTORAGEMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYDISKMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYGPUINFOMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYRAIDMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYSMARTMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYSPACEIOMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYSTORAGEIOMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYSERVICESMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYSYSTEMMIB.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/MibsAndOids/SYNOLOGYUPSMIB.pm
+
 
 EXTRA_MODULES=\
   Classes/HOSTRESOURCESMIB/Component/ClockSubsystem.pm \
@@ -88,7 +98,13 @@ EXTRA_MODULES=\
   Classes/HP/Lefthand.pm \
   Classes/HP.pm \
   Classes/UCDMIB/Components/CpuSubsystem.pm \
+  Classes/UCDMIB/Components/LoadSubsystem.pm \
   Classes/UCDMIB/Components/MemSubsystem.pm \
+  Classes/UCDMIB/Components/SwapSubsystem.pm \
+  Classes/Synology/Component/EnvironmentalSubsystem.pm \
+  Classes/Synology/Component/DiskSubsystem.pm \
+  Classes/Synology/Component/RaidSubsystem.pm \
+  Classes/Synology.pm \
   Classes/Device.pm
 
 SED=/bin/sed
