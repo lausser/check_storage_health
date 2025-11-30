@@ -19,7 +19,7 @@ sub init {
         $Monitoring::GLPlugin::SNMP::MibsAndOids::definitions->{'QTS-QTS-MIB'};
     $self->rebless("CheckStorageHealth::QNAP::QTS");
   } elsif ($self->implements_mib("NAS-MIB")) {
-    # alte modelle. kostet was
+    $self->rebless("CheckStorageHealth::QNAP::NAS");
   }
   if (ref($self) ne "CheckStorageHealth::QNAP") {
     $self->init();
