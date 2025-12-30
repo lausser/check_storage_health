@@ -117,6 +117,15 @@ EXTRA_MODULES=\
   CheckStorageHealth/QNAP/QuTShero/Component/PowersupplySubsystem.pm \
   CheckStorageHealth/QNAP/QuTShero/Component/EnvironmentalSubsystem.pm \
   CheckStorageHealth/QNAP/QuTShero.pm \
+  CheckStorageHealth/QNAP/NAS/Component/CpuSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/DiskSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/EnvironmentalSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/FanSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/MemSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/RaidSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/StorageSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS/Component/TemperatureSubsystem.pm \
+  CheckStorageHealth/QNAP/NAS.pm \
   CheckStorageHealth/QNAP.pm \
   CheckStorageHealth/Device.pm
 
