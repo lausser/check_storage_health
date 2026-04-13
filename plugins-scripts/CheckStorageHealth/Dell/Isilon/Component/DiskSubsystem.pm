@@ -24,7 +24,7 @@ our @ISA = qw(Monitoring::GLPlugin::SNMP::TableItem);
 sub finish {
   my ($self) = @_;
   $self->{name} = lc $self->{diskDeviceName};
-  $self->{name} = "disk_".$self->{name} if ! $self->{name} =~ /disk/;
+  $self->{name} = "disk_".$self->{name} if $self->{name} !~ /disk/;
 }
 
 sub check {
