@@ -16,7 +16,11 @@ sub init {
 sub check {
   my ($self) = @_;
   $self->SUPER::check();
-  $self->reduce_messages("no alerts");
+  # NB: no reduce_messages() here: it would clear the OK messages of all
+  # sibling subsystems that happened to be checked before us, and
+  # check_subsystems() iterates in (randomized) hash order, so the
+  # surviving message set would change from run to run.
+  $self->add_ok("no alerts") if ! $self->check_messages();
 }
 
 

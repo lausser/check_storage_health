@@ -1,3 +1,12 @@
+* 2026-10-15 2.3.1
+  cache the classification result
+* 2026-09-29 2.3
+  add Data Domain VTL (virtual tape library) health check to hardware-health
+  fix Data Domain: AlertSubsystem no longer clears the OK messages of sibling
+  subsystems checked before it (hardware-health output was unstable between runs)
+* 2026-09-29 2.2
+  add filesystem-free mode for Dell Data Domain
+
 * 2026-04-13 2.1.0.1
   remove a Perl warning in Isilon Disk
 * 2025-12-30 2.1

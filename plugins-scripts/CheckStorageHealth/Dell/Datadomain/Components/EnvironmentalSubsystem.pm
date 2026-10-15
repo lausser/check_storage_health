@@ -11,6 +11,7 @@ sub init {
       ["disk_subsystem", "CheckStorageHealth::Dell::Datadomain::Component::DiskSubsystem"],
 
       ["alert_subsystem", "CheckStorageHealth::Dell::Datadomain::Component::AlertSubsystem"],
+      ["tape_subsystem", "CheckStorageHealth::Dell::Datadomain::Component::TapeSubsystem"],
   ]);
 }
 

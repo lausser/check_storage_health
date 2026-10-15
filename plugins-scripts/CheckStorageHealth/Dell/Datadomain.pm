@@ -17,8 +17,9 @@ sub init {
     if (! exists $self->{components}->{ucdmem_subsystem} or ! exists $self->{components}->{ucdmem_subsystem}->{mem_usage}) {
       $self->analyze_and_check_hrmem_subsystem("CheckStorageHealth::HOSTRESOURCESMIB::Component::MemSubsystem");
     }
+  } elsif ($self->mode eq "device::storage::filesystem::free") {
+    $self->analyze_and_check_storage_subsystem("CheckStorageHealth::Dell::Datadomain::Component::StorageSubsystem");
   } else {
     $self->no_such_mode();
   }
 }
-

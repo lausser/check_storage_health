@@ -16,7 +16,6 @@ sub init {
       ["nvrambatterys", "nvramBatteryTable", "CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::NvramBattery"],
       ["diskproperties", "diskPropertiesTable", "CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::DiskProperties"],
       ["diskreliabilitys", "diskReliabilityTable", "CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::DiskReliability"],
-      ["filesystemspaces", "fileSystemSpaceTable", "CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::FileSystemSpace"],
   ]);
   foreach my $diskprop (@{$self->{diskproperties}}) {
     if ($diskprop->{diskPropState} eq "unknown") {
@@ -104,30 +103,5 @@ sub check {
   if ($self->{diskErrState} ne "ok" and $self->{diskErrState} ne "spare") {
     $self->add_warning_mitigation();
   }
-}
-
-package CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::FileSystemSpace;
-use parent -norequire, 'Monitoring::GLPlugin::SNMP::TableItem';
-use strict;
-
-sub check {
-  my($self) = @_;
-  my $label = "fs_".$self->{fileSystemResourceName}."_usage";
-  $self->add_info(sprintf "fs %s usage is %.2f%% (%d of %dGB)",
-      $self->{fileSystemResourceName}, $self->{fileSystemPercentUsed},
-      $self->{fileSystemSpaceUsed}, $self->{fileSystemSpaceSize});
-  $self->set_thresholds(
-      metric => $label,
-      warning => 80,
-      critical => 90,
-  );
-  #if ($self->check_thresholds(metric => $label, value => $self->{fileSystemPercentUsed})) {
-    $self->add_message($self->check_thresholds(metric => $label, value => $self->{fileSystemPercentUsed}));
-  #}
-  $self->add_perfdata(
-      label => $label,
-      value => $self->{fileSystemPercentUsed},
-      uom => "%",
-  );
 }
 

@@ -7,6 +7,8 @@ GL_MODULES=\
   ../GLPlugin/lib/Monitoring/GLPlugin/Item.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/TableItem.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/Backend/XS.pm \
+  ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/Backend/Netsnmp.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/CSF.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/Item.pm \
   ../GLPlugin/lib/Monitoring/GLPlugin/SNMP/TableItem.pm \
@@ -83,9 +85,11 @@ EXTRA_MODULES=\
   CheckStorageHealth/Dell/Datadomain/Components/EnvironmentalSubsystem.pm \
   CheckStorageHealth/Dell/Datadomain/Components/AlertSubsystem.pm \
   CheckStorageHealth/Dell/Datadomain/Components/DiskSubsystem.pm \
+  CheckStorageHealth/Dell/Datadomain/Components/StorageSubsystem.pm \
   CheckStorageHealth/Dell/Datadomain/Components/FanSubsystem.pm \
   CheckStorageHealth/Dell/Datadomain/Components/PowersupplySubsystem.pm \
   CheckStorageHealth/Dell/Datadomain/Components/TemperatureSubsystem.pm \
+  CheckStorageHealth/Dell/Datadomain/Components/TapeSubsystem.pm \
   CheckStorageHealth/Dell/Datadomain.pm \
   CheckStorageHealth/Dell.pm \
   CheckStorageHealth/HP/Lefthand/Component/StorageSubsystem.pm \
@@ -177,4 +181,3 @@ $(libexec_SCRIPTS) : $(EXTRA_DIST)
 	$(ECHO) >> $@
 	$(CAT) $(libexec_SCRIPTS).pl | $(AWK) -f ./subst >> $@
 	chmod +x $@
-
