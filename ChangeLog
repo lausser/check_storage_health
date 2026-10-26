@@ -1,3 +1,8 @@
+* 2026-10-26 2.3.1.2
+  fix Data Domain: all three disk tables (diskPropState, diskPerfState,
+  diskErrState) now share one DiskStateTC classifier, so a neutral
+  "available" disk no longer warns in diskPerformance/diskReliability and
+  "absent" (disk present but not communicating) is now reported as warning
 * 2026-10-26 2.3.1.1
   fix Data Domain: hardware-health disk_subsystem now reports each disk's
   diskPropState instead of a bare "OK"; only a "failed" disk warns, while

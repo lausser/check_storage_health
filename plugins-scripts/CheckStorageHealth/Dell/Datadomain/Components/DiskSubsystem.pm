@@ -32,6 +32,37 @@ sub init {
 
 }
 
+# Shared severity mapping for the Data Domain DiskStateTC textual convention.
+# diskPropState, diskPerfState and diskErrState all use DiskStateTC, so every
+# per-disk item must judge a state the same way - this keeps the three tables
+# from disagreeing (a divergence previously made an "available" disk report
+# WARNING in diskPerformance while diskProperties reported it as OK).
+#
+# Source: DATA-DOMAIN-MIB (MIBS/DATA_DOMAIN.mib, DiskStateTC) + Dell
+# KB 000021916 ("How to Identify and Resolve Disk States") and KB 000060053.
+#   failed  (F)  disk fault, "address immediately"            -> WARNING
+#   absent  (A)  no comm to an inserted disk (reseat/rescan)  -> WARNING
+#   ok (.)     in use / working                                -> OK
+#   spare (s)  hot spare                                       -> OK
+#   available(V) healthy, just not allocated to a tier yet     -> OK (neutral)
+#   unknown (U) reserved (Cloud Tier) / empty slot (KB 000060053) -> OK
+#   system (Y) internal management disk                        -> OK
+#   raidReconstruction (R) / copyReconstruction (C) transient  -> OK
+#   anything else (e.g. a value added by newer firmware)        -> UNKNOWN
+# Note: a genuinely empty slot is "Not-Installed" in the KB, which has no
+# DiskStateTC value in this MIB; such slots report as "unknown" (reserved),
+# not "absent". So "absent" specifically means a disk that is present but not
+# communicating - a real problem.
+sub diskstate_severity {
+  my ($state) = @_;
+  return 'WARNING'
+      if defined $state and $state =~ /\A(failed|absent)\z/;
+  return 'OK'
+      if defined $state and $state =~
+          /\A(ok|unknown|spare|available|system|raidReconstruction|copyReconstruction)\z/;
+  return 'UNKNOWN';
+}
+
 package CheckStorageHealth::Dell::Datadomain::Component::EnvironmentalSubsystem::NvramBattery;
 use parent -norequire, 'Monitoring::GLPlugin::SNMP::TableItem';
 use strict;
@@ -62,8 +93,13 @@ sub check {
   $self->add_info(sprintf "performance of enc:%s/disk:%s is %s (%.2f%% busy)",
       $self->{diskPerfEnclosureID}, $self->{diskPerfIndex},
       $self->{diskPerfState}, $self->{diskBusy});
-  if ($self->{diskPerfState} ne "ok" and $self->{diskPerfState} ne "spare") {
+  my $severity =
+      CheckStorageHealth::Dell::Datadomain::Component::DiskSubsystem::diskstate_severity(
+          $self->{diskPerfState});
+  if ($severity eq "WARNING") {
     $self->add_warning_mitigation();
+  } elsif ($severity eq "UNKNOWN") {
+    $self->add_unknown_mitigation();
   } else {
     $self->add_ok();
   }
@@ -85,34 +121,20 @@ sub check {
   $self->add_info(sprintf "disk enc:%s/disk:%s (%s) has status %s",
       $self->{diskPropEnclosureID}, $self->{diskPropIndex}, $self->{diskModel},
       $state);
-  # diskPropState is DiskStateTC (DATA-DOMAIN-MIB):
-  #   ok(1) unknown(2) absent(3) failed(4) spare(5) available(6)
-  #   raidReconstruction(8) copyReconstruction(9) system(10)
-  #
-  #   failed               real disk fault -> warn
-  #   unknown, absent      not in the active data tier: reserved (e.g.
-  #                        Cloud Tier) or an empty slot. Dell documents
-  #                        "unknown" as normal with no alert expected
-  #                        (KB 000060053); such disks are already filtered
-  #                        out of diskPerformance/diskReliability in init().
-  #   system               internal management disk (system metadata/boot);
-  #                        healthy, just not a data disk
-  #   ok, spare, available,
-  #   raid/copyReconstruction
-  #                        in-service data disk (reconstruction is transient
-  #                        and self-healing)
-  #
-  # Only "failed" is a fault. Every documented non-failed state is reported
-  # OK (with its real status word in the message); an unrecognised state is
-  # reported UNKNOWN rather than assumed healthy.
-  if ($state eq "failed") {
+  # diskPropState is DiskStateTC; the shared diskstate_severity() classifier
+  # maps it to a severity so all three disk tables agree. "failed" (and
+  # "absent", a present-but-not-communicating disk) are faults (WARNING); the
+  # documented benign states report OK with their real status word; an
+  # unrecognised state reports UNKNOWN.
+  my $severity =
+      CheckStorageHealth::Dell::Datadomain::Component::DiskSubsystem::diskstate_severity(
+          $state);
+  if ($severity eq "WARNING") {
     $self->add_warning();
-  } elsif ($state eq "ok" || $state eq "system" || $state eq "unknown"
-      || $state eq "absent" || $state eq "spare" || $state eq "available"
-      || $state eq "raidReconstruction" || $state eq "copyReconstruction") {
-    $self->add_ok();
-  } else {
+  } elsif ($severity eq "UNKNOWN") {
     $self->add_unknown();
+  } else {
+    $self->add_ok();
   }
 }
 
@@ -131,8 +153,15 @@ sub check {
   $self->add_info(sprintf "disk reliability enc:%s/disk:%s has status %s",
       $self->{diskErrEnclosureID}, $self->{diskErrIndex},
       $self->{diskErrState});
-  if ($self->{diskErrState} ne "ok" and $self->{diskErrState} ne "spare") {
+  # diskErrState is DiskStateTC; use the same shared classifier as the other
+  # two disk tables so an "available" or "system" disk is judged consistently.
+  my $severity =
+      CheckStorageHealth::Dell::Datadomain::Component::DiskSubsystem::diskstate_severity(
+          $self->{diskErrState});
+  if ($severity eq "WARNING") {
     $self->add_warning_mitigation();
+  } elsif ($severity eq "UNKNOWN") {
+    $self->add_unknown_mitigation();
   } else {
     $self->add_ok();
   }
