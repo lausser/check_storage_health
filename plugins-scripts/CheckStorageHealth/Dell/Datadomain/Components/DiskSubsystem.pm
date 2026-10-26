@@ -42,6 +42,8 @@ sub check {
       $self->{nvramBatteriesIndex}, $self->{nvramBatteryStatus});
   if ($self->{nvramBatteryStatus} ne "ok") {
     $self->add_warning_mitigation();
+  } else {
+    $self->add_ok();
   }
 }
 
@@ -62,6 +64,8 @@ sub check {
       $self->{diskPerfState}, $self->{diskBusy});
   if ($self->{diskPerfState} ne "ok" and $self->{diskPerfState} ne "spare") {
     $self->add_warning_mitigation();
+  } else {
+    $self->add_ok();
   }
 }
 
@@ -77,11 +81,38 @@ sub finish {
 
 sub check {
   my($self) = @_;
+  my $state = $self->{diskPropState};
   $self->add_info(sprintf "disk enc:%s/disk:%s (%s) has status %s",
       $self->{diskPropEnclosureID}, $self->{diskPropIndex}, $self->{diskModel},
-      $self->{diskPropState});
-  if ($self->{diskPropState} eq "failed") {
+      $state);
+  # diskPropState is DiskStateTC (DATA-DOMAIN-MIB):
+  #   ok(1) unknown(2) absent(3) failed(4) spare(5) available(6)
+  #   raidReconstruction(8) copyReconstruction(9) system(10)
+  #
+  #   failed               real disk fault -> warn
+  #   unknown, absent      not in the active data tier: reserved (e.g.
+  #                        Cloud Tier) or an empty slot. Dell documents
+  #                        "unknown" as normal with no alert expected
+  #                        (KB 000060053); such disks are already filtered
+  #                        out of diskPerformance/diskReliability in init().
+  #   system               internal management disk (system metadata/boot);
+  #                        healthy, just not a data disk
+  #   ok, spare, available,
+  #   raid/copyReconstruction
+  #                        in-service data disk (reconstruction is transient
+  #                        and self-healing)
+  #
+  # Only "failed" is a fault. Every documented non-failed state is reported
+  # OK (with its real status word in the message); an unrecognised state is
+  # reported UNKNOWN rather than assumed healthy.
+  if ($state eq "failed") {
     $self->add_warning();
+  } elsif ($state eq "ok" || $state eq "system" || $state eq "unknown"
+      || $state eq "absent" || $state eq "spare" || $state eq "available"
+      || $state eq "raidReconstruction" || $state eq "copyReconstruction") {
+    $self->add_ok();
+  } else {
+    $self->add_unknown();
   }
 }
 
@@ -102,6 +133,8 @@ sub check {
       $self->{diskErrState});
   if ($self->{diskErrState} ne "ok" and $self->{diskErrState} ne "spare") {
     $self->add_warning_mitigation();
+  } else {
+    $self->add_ok();
   }
 }
 

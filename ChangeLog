@@ -1,3 +1,8 @@
+* 2026-10-26 2.3.1.1
+  fix Data Domain: hardware-health disk_subsystem now reports each disk's
+  diskPropState instead of a bare "OK"; only a "failed" disk warns, while
+  "unknown" (reserved/empty slot) and "system" (management) disks are
+  benign and an unrecognised state is reported UNKNOWN
 * 2026-10-15 2.3.1
   cache the classification result
 * 2026-09-29 2.3
